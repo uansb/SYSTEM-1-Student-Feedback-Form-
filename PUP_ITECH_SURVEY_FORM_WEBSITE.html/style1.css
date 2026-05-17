@@ -9,38 +9,16 @@
    ================================ */
 body {
     margin: 0;
-    background-color: #f4f4f4;
     color: #333;
+    background-color: #f4f4f4;
+    background-position: center;
+
 }
-
-
-
 
 /* ================================
    2. HEADER & NAVIGATION
    Alternative header implementations and nav buttons
    ================================ */
-header {
-    background-color: #7b1e1e;
-    color: #fff;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: space-evenly;
-}
-
-
-
-
-header img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    margin-right: 15px;
-}
-
-
-
 
 header nav a {
     color: #fff;
@@ -57,37 +35,55 @@ header nav a:hover {
 }
 
 
-
-
 #header {
     display: flex;
     align-items: left;
     justify-content: left;
     position: relative;
     background-color: #7b1e1e;
-    padding: 15px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: white;
+    height: 65px; 
+    
 }
 
 
 
 
 #header img {
-    height: 50px;
-    margin-right: 40px;
+    height: 3.6rem;
+    width: 3.7rem;
+    margin-right: 10px;
     size: 16px;
     display: flex;
     align-items: center;
+    padding-top: 0.2% ;
 }
-
-
 
 
 #title {
     margin: 0;
-    text-align: right;
-    color: #fff;
-    font-size: 40px;
+    color: white;
+    font-size: 1.8rem;
+}
+
+#subtitle {
+
+    margin: 0;
+    color: white;
+    font-size: 1.4rem;
+
+}
+
+#header-text{
+
+    display: inline;
+    height: 100%;
+    gap: 5px;
+    padding-top: 4px;
 }
 
 
@@ -175,6 +171,7 @@ header nav a:hover {
     border-radius: 12px;
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
     justify-content: center;
     height: 40%;
@@ -205,7 +202,7 @@ header nav a:hover {
 
 
 #homecontent h2 {
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bolder;
     margin-bottom: 10px;
     color: #ffd166;
@@ -217,7 +214,7 @@ header nav a:hover {
 
 #homecontent p {
     max-width: 1100px;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
@@ -241,8 +238,6 @@ header nav a:hover {
 #homecontent button:hover {
     background-color: #ff5722;
 }
-
-
 
 
 /* ================================
@@ -357,7 +352,7 @@ header nav a:hover {
     text-align: center;
     font-family: "Times New Roman", serif;
     color: #7b1e1e;
-    font-size: 30px;
+    font-size: 2rem;
     margin-bottom: 20px;
 }
 
@@ -365,20 +360,17 @@ header nav a:hover {
 
 
 #surveycontent h3 {
-    font-size: 25px;
+    font-size: 1.4rem;
     font-family: 'Times New Roman', Times, serif;
     color: #7b1e1e;
 }
-
-
-
 
 label {
     display: block;
     margin-bottom: 6px;
     font-weight: 600;
     font-family: "Times New Roman", serif;
-    font-size: 20px;
+    font-size: 1.1rem;
     color: #7b1e1e;
 }
 
@@ -410,8 +402,12 @@ select {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+option {
 
-
+    color: rgb(44, 37, 37);
+    transition: 0.6 ease;
+    border: 1px solid #7b1e1e;
+}
 
  input[type="text"], input[type="email"] {
     width: 95%;
@@ -475,6 +471,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     color: #7b1e1e;
     font-weight: 600;
     font-size: 30px;
+    border-top: 10px solid #7b1e1e;
 }
 
 
@@ -490,12 +487,16 @@ form {
 }
 
 
+form h3 {
+    font-size: 1.5rem;
+    color: #7b1e1e;
+    margin-bottom: 8px;
+}
 
-
-form h3, form p {
+ form p {
     margin-bottom: 8px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.1rem;
     color: #7b1e1e;
 }
 
@@ -514,6 +515,7 @@ form label {
     transition: background 0.2s, border-color 0.2s;
     font-family: "Times New Roman", serif;
     color: #7b1e1e;
+    font-size: 1.1rem;
 }
 
 
@@ -563,6 +565,12 @@ form input[type="checkbox"], form input[type="radio"] {
     cursor: pointer;
     font-size: 14px;
     gap: 10px;
+    transition: 0.6s ease;
+}
+
+.likert-scale label:hover {
+    transition: 0.6s ease;
+    transform: scale(1.1);
 }
 
 
@@ -596,6 +604,11 @@ form input[type="checkbox"], form input[type="radio"] {
 
 
 .likert-scale input[type="radio"]:checked + .circle {
+    transform: scale(1.3);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.likert-scale input[type="radio"]:hover + .circle {
     transform: scale(1.2);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
@@ -688,6 +701,12 @@ form input[type="checkbox"], form input[type="radio"] {
     cursor: pointer;
     font-size: 14px;
     gap: 6px;
+    transition: 0.6s ease;
+}
+
+.frequency-scale label:hover {
+    transform: scale(1.1);
+    transition: 0.6s ease;
 }
 
 
@@ -701,6 +720,11 @@ form input[type="checkbox"], form input[type="radio"] {
 
 
 .frequency-scale input[type="radio"]:checked + .circle {
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.frequency-scale input[type="radio"]:hover + .circle {
     transform: scale(1.2);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
@@ -882,23 +906,20 @@ form input[type="checkbox"], form input[type="radio"] {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-right: 15%;
-    margin-left: 15%;
+    margin-right: 30%;
+    margin-left: 30%;
     margin-top: 5%;
-    margin-bottom: 10%;
+    margin-bottom: 0%;
     border: solid 1px #ffffff;
     background-color: white;
-    padding: 5%;
-    border-radius: 2%;
+    padding: 3%;
+    border-radius: 12px;
     text-align: center;
     color: #000000;
     display: none;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    bottom: 1px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);   
+    border-top: 10px solid #7b1e1e;
 }
-
-
-
 
 #proceedbtn {
     color: white;
@@ -908,10 +929,10 @@ form input[type="checkbox"], form input[type="radio"] {
     width: 200px;
     border-radius: 5%;
     transition: background-color 0.3s ease;
+    margin: 0;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+
 }
-
-
-
 
 #proceedbtn:hover {
     transform: scale(1.08);
@@ -920,58 +941,46 @@ form input[type="checkbox"], form input[type="radio"] {
     cursor: pointer;
 }
 
-
-
-
 #proceedbtn.disabled {
     opacity: 0.5;
     pointer-events: none;
 }
 
-
-
-
 #consentdiv h1 {
-    font-size: 40px;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     color: #7b1e1e;
     margin-top: 0%;
 }
 
-
-
-
 #consentdiv h4 {
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
     color: #7b1e1e;
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-
-
-
 #consentdiv p {
-    font-size: 20px;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
     color: #333333;
     margin-bottom: 20px;
     margin-top: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
-
-
-
 
 #consentdiv label {
-    font-size: 20px;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
     color: #000000;
-    margin-bottom: 5px;
-    margin-top: 30px;
+    margin-bottom: 0;
+    margin-top: 40px;
 }
-
-
-
 
 /* ================================
    14. TEAM SECTION
@@ -981,15 +990,9 @@ form input[type="checkbox"], form input[type="radio"] {
     text-align: justify;
 }
 
-
-
-
 .main-wrapper p.role {
     text-align: center;
 }
-
-
-
 
 .team-grid {
     display: grid;
@@ -1000,16 +1003,10 @@ form input[type="checkbox"], form input[type="radio"] {
     max-width: 900px;
 }
 
-
-
-
 .team-card {
     text-align: center;
     width: 100%;
 }
-
-
-
 
 .member-photo {
     width: 120px;
@@ -1020,17 +1017,11 @@ form input[type="checkbox"], form input[type="radio"] {
     border: 3px solid #d9c6a5;
 }
 
-
-
-
 .team-card h3 {
     font-size: 16px;
     color: #ffffff;
     margin-bottom: 3px;
 }
-
-
-
 
 .role {
     font-size: 14px;
@@ -1046,4 +1037,5 @@ form input[type="checkbox"], form input[type="radio"] {
     color: #ffd166;
     text-align: center;
 }
+
 
