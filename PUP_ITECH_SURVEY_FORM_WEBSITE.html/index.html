@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
-
 <!--
     PUP ITech Feedback System
     - Main HTML structure for page sections: Home, Results, Consent, Survey, and About.
@@ -11,19 +8,19 @@
 -->
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PUP ITECH FEEDBACK SYSTEM</title>
     <link rel="stylesheet" href="style1.css">
 </head>
-
-
-
 
 <body>
     <!-- HEADER SECTION -->
     <div id="header">
         <img src="Images/pup_logo.png" alt="PUP_Logo">
-        <img src="Images/itech_logo.png" alt="ITECH_Logo">
-        <h1 id="title">PUP INSTITUTE OF TECHNOLOGY</h1>
+        <div id="header-text">
+        <h1 id="title">Polytechnic University of the Philippines</h1>
+        <h2 id="subtitle">Institute of Technology</h2>
+        </div>
         <div id="nav">
             <button id="homeBtn">Home</button>
             <button id="resultsBtn">Results</button>
@@ -31,12 +28,11 @@
         </div>
     </div>
 
-
-
-
     <!-- HOME SECTION -->
-    <div id="homediv" class="section active">
+    <section id="homediv" class="section active">
+            
         <div id="homecontent">
+            
             <h2>Home</h2>
             <br>
             <p>
@@ -50,13 +46,14 @@
                 turning individual observations into collective progress for our second home.
             </p>
         </div>
-    </div>
+        </div>
+    </section>
 
 
 
 
     <!-- RESULTS SECTION -->
-    <div id="resultdiv" class="section">
+    <section id="resultdiv" class="section">
         <div id="resultscontent">
             <h2 style="text-align: center;">Detailed Student Feedback</h2>
             <br>
@@ -64,10 +61,7 @@
                 <tbody id="tableBody"></tbody>
             </table>
         </div>
-    </div>
-
-
-
+    </section>
 
     <!-- CONSENT SECTION -->
     <div id="consentdiv" class="section">
@@ -75,36 +69,24 @@
             <h1 class="consentheader">Your Feedback Matters</h1>
             <p class="consentp1">Help us provide better services by sharing your honest feedback.</p>
 
-
-
-
             <h4>Privacy Consent</h4>
             <p>
                 By proceeding, you agree that we may collect and process the feedback you provide. We use this data solely to improve our
                 services and internal operations.
             </p>
 
-
-
-
             <label>
                 <input type="checkbox" id="consentCheckbox">
                 I have read and agree to the terms above.
             </label>
-
-
-
 
             <br><br>
             <button id="proceedbtn" type="button">Proceed to Survey</button>
         </div>
     </div>
 
-
-
-
     <!-- SURVEY SECTION -->
-    <div id="surveydiv" class="section">
+    <section id="surveydiv" class="section">
         <div id="surveycontent">
             <h1 class="surveyheader">STUDENT FEEDBACK FORM</h1>
             <h3>Personal Information</h3>
@@ -132,8 +114,6 @@
                 <option value="program">Diploma in Mechanical Engineering Technology (DMET)</option>
             </select>
         </div>
-
-
 
 
         <div id="surveycontent2">
@@ -448,18 +428,12 @@
                 <textarea id="q12c1" name="q12c1" placeholder="Type here..." rows="4"></textarea>
             </form>
 
-
-
-
             <button id="submitbtn" class="surveybtn" type="submit">Submit</button>
         </div>
-    </div>
-
-
-
+    </section>
 
     <!-- ABOUT SECTION -->
-    <div id="aboutdiv" class="section">
+    <section id="aboutdiv" class="section">
         <div id="aboutcontent">
             <h2>ABOUT US</h2>
             <br>
@@ -470,59 +444,49 @@
             </p>
 
 
-
-
             <div class="form-container">
                 <h2 class="category-title">The Development Team</h2>
                 <div class="team-grid">
                     <div class="team-card">
                         <img src="Sungahid.png" alt="John Felix Sungahid" class="member-photo">
                         <h3>John Felix Sungahid</h3>
-                        <p class="role"><span class="lang en">Project Leader</span></p>
+                        <p class="role">Project Leader</p>
                     </div>
                     <div class="team-card">
                         <img src="Suba.jpg" alt="Euan Alfonso M. Suba" class="member-photo">
                         <h3>Euan Alfonso M. Suba</h3>
-                        <p class="role"><span class="lang en">Project Assistant Leader</span></p>
+                        <p class="role">Project Assistant Leader</p>
                     </div>
                     <div class="team-card">
                         <img src="Gabarda.jpg" alt="Jhon Carl Gabarda" class="member-photo">
                         <h3>Jhon Carl Gabarda</h3>
-                        <p class="role"><span class="lang en">Member</span></p>
+                        <p class="role">Member</p>
                     </div>
                     <div class="team-card">
                         <img src="Libres.png" alt="Ryan Dexter Libres" class="member-photo">
                         <h3>Ryan Dexter Libres</h3>
-                        <p class="role"><span class="lang en">Member</span></p>
+                        <p class="role">Member</p>
                     </div>
                     <div class="team-card">
                         <img src="Palagam.jpg" alt="Spike Vincent Palagam" class="member-photo">
                         <h3>Spike Vincent Palagam</h3>
-                        <p class="role"><span class="lang en">Member</span></p>
+                        <p class="role">Member</p>
                     </div>
                     <div class="team-card">
                         <img src="Soleybar.jpg" alt="John Marvin Soleybar" class="member-photo">
                         <h3>John Marvin Soleybar</h3>
-                        <p class="role"><span class="lang en">Member</span></p>
+                        <p class="role">Member</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
+    </section>
 
     <!-- FIXED SURVEY BUTTON -->
     <button id="surveybtn" class="surveybtn">SUBMIT A FEEDBACK</button>
 
-
-
-
     <script type="module" src="./script1.js"></script>
 </body>
-
-
 
 
 </html>
