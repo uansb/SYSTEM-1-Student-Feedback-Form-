@@ -1,4 +1,3 @@
-
 /*
     PUP ITech Feedback System Script
     - Handles section navigation and display state.
@@ -260,12 +259,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         showSection('surveydiv');
     });
-});
 
-
-// Submission handler for the survey form
-const submitBtn = document.getElementById('submitbtn');
-submitBtn.addEventListener('click', async (e) => {
+    // Submission handler moved inside DOMContentLoaded to guarantee the element exists
+    document.getElementById('submitbtn')?.addEventListener('click', async (e) => {
     e.preventDefault();
 
     // Run full validation before doing anything
@@ -308,14 +304,16 @@ submitBtn.addEventListener('click', async (e) => {
     };
 
 
-    try {
-        await addDoc(collection(db, "responses"), feedbackData);
-        alert("Full feedback submitted successfully!");
-        showSection('resultdiv');
-    } catch (error) {
-        console.error("Submission Error: ", error);
-    }
-});
+        try {
+            await addDoc(collection(db, "responses"), feedbackData);
+            alert("Full feedback submitted successfully!");
+            showSection('resultdiv');
+        } catch (error) {
+            console.error("Submission Error: ", error);
+        }
+    });  // end submitbtn listener
+
+}); // end DOMContentLoaded
 
 
 // Load results from Firestore and render cards
@@ -365,3 +363,4 @@ async function loadResults() {
 
 
 window.showSection = showSection;
+
