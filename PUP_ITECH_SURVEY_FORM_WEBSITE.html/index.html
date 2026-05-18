@@ -428,7 +428,8 @@
                 <textarea id="q12c1" name="q12c1" placeholder="Type here..." rows="4"></textarea>
             </form>
 
-            <button id="submitbtn" class="surveybtn" type="submit">Submit</button>
+            <!-- CHANGED: type="submit" → type="button" to prevent native browser submission bypassing JS validation -->
+            <button id="submitbtn" class="surveybtn" type="button">Submit</button>
         </div>
     </section>
 
