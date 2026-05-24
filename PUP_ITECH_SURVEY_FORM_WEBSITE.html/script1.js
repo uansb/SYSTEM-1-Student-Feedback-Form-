@@ -28,17 +28,10 @@ const db = getFirestore(app);
 // VALIDATION HELPERS
 // ================================
 
-// Only letters, spaces, hyphens, apostrophes (no digits)
-function isTextOnly(value) {
-    return /^[A-Za-zÀ-ÿ\s'\-]+$/.test(value.trim());
-}
-
-// Standard email format check
 function isValidEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
-// Show inline error under a field
 function showError(inputEl, message) {
     clearError(inputEl);
     inputEl.style.borderColor = "#e74c3c";
@@ -49,16 +42,13 @@ function showError(inputEl, message) {
     inputEl.insertAdjacentElement('afterend', err);
 }
 
-// Remove inline error from a field
 function clearError(inputEl) {
     inputEl.style.borderColor = "";
     const next = inputEl.nextElementSibling;
     if (next && next.classList.contains('validation-error')) next.remove();
 }
 
-// Attach live validation listeners to text/email inputs
 function attachLiveValidation() {
-    // Name field — letters only
     const nameInput = document.getElementById('name');
     if (nameInput) {
         nameInput.addEventListener('input', () => {
@@ -73,7 +63,6 @@ function attachLiveValidation() {
         });
     }
 
-    // Email field — valid email format
     const emailInput = document.getElementById('email');
     if (emailInput) {
         emailInput.addEventListener('blur', () => {
@@ -91,7 +80,6 @@ function attachLiveValidation() {
         });
     }
 
-    // "Other (please specify)" text fields — no pure-number entries
     document.querySelectorAll('input[name="issues_other"], input[name="q2r1_other"], input[name="preference_other"], input[name="improvement_other"], input[name="challenges_other"]')
         .forEach(input => {
             input.addEventListener('input', () => {
@@ -104,7 +92,6 @@ function attachLiveValidation() {
             });
         });
 
-    // Suggestion textarea — no pure-number entries
     const suggestion = document.getElementById('q12c1');
     if (suggestion) {
         suggestion.addEventListener('input', () => {
@@ -118,16 +105,21 @@ function attachLiveValidation() {
     }
 }
 
-// Full validation run before submission; returns true if all pass
+
+// ================================
+// FULL FORM VALIDATION
+// ================================
+
 function validateForm() {
     let valid = true;
     const errors = [];
+    const form = document.getElementById('surveycontent2');
 
     const anon = document.getElementById('anon').checked;
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
 
-    // Name — required if not anonymous, no digits
+    // ── Name ──
     if (!anon) {
         if (!nameInput.value.trim()) {
             showError(nameInput, 'Name is required.');
@@ -141,7 +133,7 @@ function validateForm() {
             clearError(nameInput);
         }
 
-        // Email — required if not anonymous
+        // ── Email ──
         if (!emailInput.value.trim()) {
             showError(emailInput, 'Email is required.');
             errors.push('Email is required.');
@@ -158,7 +150,7 @@ function validateForm() {
         clearError(emailInput);
     }
 
-    // Year level — must be selected
+    // ── Year Level ──
     const yearLevel = document.getElementById('yearlevel');
     if (!yearLevel.value) {
         yearLevel.style.borderColor = "#e74c3c";
@@ -168,13 +160,71 @@ function validateForm() {
         yearLevel.style.borderColor = "";
     }
 
-    // "Other specify" text fields — no pure-number values
+    // ── Program ──
+    const program = document.getElementById('program');
+    if (!program.value) {
+        program.style.borderColor = "#e74c3c";
+        errors.push('Please select your Program.');
+        valid = false;
+    } else {
+        program.style.borderColor = "";
+    }
+
+    // ── Checkbox groups: at least 1 must be checked ──
+    const checkboxGroups = [
+        { name: 'issues[]',      label: 'Question 1 (Classroom Issues)'        },
+        { name: 'preference[]',  label: 'Question 2 (Factors for Preference)'  },
+        { name: 'improvement[]', label: 'Question 3 (Lab Improvements)'        },
+        { name: 'challenges[]',  label: 'Question 4 (Lab Challenges)'          },
+    ];
+
+    for (const group of checkboxGroups) {
+        const checkboxes = form.querySelectorAll(`input[name="${group.name}"]`);
+        const anyChecked = [...checkboxes].some(cb => cb.checked);
+        const wrapper = checkboxes[0]?.closest('div');
+
+        if (!anyChecked) {
+            valid = false;
+            errors.push(`${group.label}: please select at least one option.`);
+            if (wrapper) wrapper.style.outline = '1px solid #e74c3c';
+        } else {
+            if (wrapper) wrapper.style.outline = '';
+        }
+    }
+
+    // ── Radio groups: one must be selected ──
+    const radioGroups = [
+        { name: 'q2r1',  label: 'Question 2 (Favorite Spot)'      },
+        { name: 'q5r3',  label: 'Question 5 (CR Maintenance)'     },
+        { name: 'q6r3',  label: 'Question 6 (CR Fixtures)'        },
+        { name: 'q7r3',  label: 'Question 7 (CR Privacy)'         },
+        { name: 'q8r3',  label: 'Question 8 (CR Water Supply)'    },
+        { name: 'q9r',   label: 'Question 9 (Instructor Rating)'  },
+        { name: 'q10r',  label: 'Question 10 (Curriculum Focus)'  },
+        { name: 'q11r3', label: 'Question 11 (Work Ethics)'       },
+    ];
+
+    for (const group of radioGroups) {
+        const selected = form.querySelector(`input[name="${group.name}"]:checked`);
+        const radios = form.querySelectorAll(`input[name="${group.name}"]`);
+        const wrapper = radios[0]?.closest('div');
+
+        if (!selected) {
+            valid = false;
+            errors.push(`${group.label}: please select an answer.`);
+            if (wrapper) wrapper.style.outline = '1px solid #e74c3c';
+        } else {
+            if (wrapper) wrapper.style.outline = '';
+        }
+    }
+
+    // ── Other specify fields — no pure-number values ──
     const otherFields = [
-        { el: document.querySelector('input[name="issues_other"]'),     label: 'Q1 – Other issues' },
-        { el: document.querySelector('input[name="q2r1_other"]'),        label: 'Q2 – Other hangout spot' },
-        { el: document.querySelector('input[name="preference_other"]'), label: 'Q2 – Other preference factor' },
-        { el: document.querySelector('input[name="improvement_other"]'),label: 'Q3 – Other improvement' },
-        { el: document.querySelector('input[name="challenges_other"]'), label: 'Q4 – Other challenge' },
+        { el: document.querySelector('input[name="issues_other"]'),      label: 'Q1 – Other issues'          },
+        { el: document.querySelector('input[name="q2r1_other"]'),         label: 'Q2 – Other hangout spot'    },
+        { el: document.querySelector('input[name="preference_other"]'),  label: 'Q2 – Other preference'      },
+        { el: document.querySelector('input[name="improvement_other"]'), label: 'Q3 – Other improvement'     },
+        { el: document.querySelector('input[name="challenges_other"]'),  label: 'Q4 – Other challenge'       },
     ];
 
     otherFields.forEach(({ el, label }) => {
@@ -188,17 +238,24 @@ function validateForm() {
         }
     });
 
-    // Suggestion textarea — no pure-number value
+    // ── Suggestion textarea ──
     const suggestion = document.getElementById('q12c1');
-    if (suggestion && /^\d+$/.test(suggestion.value.trim())) {
+    if (!suggestion.value.trim()) {
+        suggestion.style.outline = '1px solid #e74c3c';
+        errors.push('Question 12: Please write your suggestion.');
+        valid = false;
+    } else if (/^\d+$/.test(suggestion.value.trim())) {
         showError(suggestion, 'Please write your suggestion using words, not only numbers.');
         errors.push('Q12: Please write your suggestion using words.');
         valid = false;
+    } else {
+        suggestion.style.outline = '';
+        clearError(suggestion);
     }
 
+    // ── Scroll to first error ──
     if (!valid && errors.length) {
-        // Scroll to the first errored element
-        const firstError = document.querySelector('.validation-error');
+        const firstError = document.querySelector('.validation-error, [style*="2px solid"]');
         if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         alert("Please fix the following:\n• " + errors.join("\n• "));
     }
@@ -207,36 +264,37 @@ function validateForm() {
 }
 
 
-// Section visibility helper
+// ================================
+// SECTION NAVIGATION
+// ================================
+
 function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
     const target = document.getElementById(sectionId);
     if (target) target.classList.add('active');
 
-
     const consent = document.getElementById('consentdiv');
     if (consent) consent.style.display = (sectionId === 'consentdiv') ? 'block' : 'none';
 
-
     const floatBtn = document.getElementById('surveybtn');
     if (floatBtn) floatBtn.style.display = (sectionId === 'surveydiv' || sectionId === 'consentdiv') ? 'none' : 'block';
-
 
     if (sectionId === 'resultdiv') loadResults();
 }
 
 
-// Setup page event listeners after DOM is ready
+// ================================
+// DOM READY
+// ================================
+
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('homeBtn')?.addEventListener('click', () => showSection('homediv'));
     document.getElementById('resultsBtn')?.addEventListener('click', () => showSection('resultdiv'));
     document.getElementById('aboutBtn')?.addEventListener('click', () => showSection('aboutdiv'));
     document.getElementById('surveybtn')?.addEventListener('click', () => showSection('consentdiv'));
 
-    // Attach live validation once the DOM is ready
     attachLiveValidation();
 
-    // When anonymous is toggled, clear name/email errors immediately
     document.getElementById('anon')?.addEventListener('change', () => {
         const anon = document.getElementById('anon').checked;
         const nameInput = document.getElementById('name');
@@ -260,49 +318,38 @@ document.addEventListener('DOMContentLoaded', () => {
         showSection('surveydiv');
     });
 
-    // Submission handler moved inside DOMContentLoaded to guarantee the element exists
-    document.getElementById('submitbtn')?.addEventListener('click', async (e) => {
-    e.preventDefault();
+    // ── Submit button ──
+    document.getElementById('submitbtn')?.addEventListener('click', async () => {
+        if (!validateForm()) return;
 
-    // Run full validation before doing anything
-    if (!validateForm()) return;
+        const getRadioValue = (name) =>
+            document.querySelector(`input[name="${name}"]:checked`)?.parentElement.textContent.trim() || "No Rating";
 
-    const issueCheckboxes = document.querySelectorAll('input[name="issues[]"]:checked');
-    const selectedIssues = Array.from(issueCheckboxes).map(cb => cb.parentElement.textContent.trim());
-    const issuesOther = document.querySelector('input[name="issues_other"]').value;
-
-
-    const favoriteSpot = document.querySelector('input[name="q2r1"]:checked')?.parentElement.textContent.trim() || "None";
-
-
-    const preferenceCheckboxes = document.querySelectorAll('input[name="preference[]"]:checked');
-    const preferences = Array.from(preferenceCheckboxes).map(cb => cb.parentElement.textContent.trim());
-
-
-    const getRadioValue = (name) =>
-        document.querySelector(`input[name="${name}"]:checked`)?.parentElement.textContent.trim() || "No Rating";
-
-
-    const feedbackData = {
-        name: document.getElementById('anon').checked ? "Anonymous" : document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        classroomIssues: selectedIssues,
-        classroomIssuesOther: issuesOther,
-        favoriteSpot: favoriteSpot,
-        factorsForPreference: preferences,
-        improvement: Array.from(document.querySelectorAll('input[name="improvement[]"]:checked')).map(cb => cb.parentElement.textContent.trim()),
-        challenges: Array.from(document.querySelectorAll('input[name="challenges[]"]:checked')).map(cb => cb.parentElement.textContent.trim()),
-        crMaintenance: getRadioValue('q5r3'),
-        crFixtures: getRadioValue('q6r3'),
-        crPrivacy: getRadioValue('q7r3'),
-        crWaterSupply: getRadioValue('q8r3'),
-        instructorAbility: getRadioValue('q9r'),
-        curriculumFocus: getRadioValue('q10r'),
-        workEthics: getRadioValue('q11r3'),
-        suggestion: document.getElementById('q12c1').value,
-        submittedAt: new Date()
-    };
-
+        const feedbackData = {
+            name: document.getElementById('anon').checked ? "Anonymous" : document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            yearLevel: document.getElementById('yearlevel').value,
+            program: document.getElementById('program').value,
+            classroomIssues: Array.from(document.querySelectorAll('input[name="issues[]"]:checked')).map(cb => cb.parentElement.textContent.trim()),
+            classroomIssuesOther: document.querySelector('input[name="issues_other"]').value,
+            favoriteSpot: document.querySelector('input[name="q2r1"]:checked')?.parentElement.textContent.trim() || "None",
+            favoriteSpotOther: document.querySelector('input[name="q2r1_other"]').value,
+            factorsForPreference: Array.from(document.querySelectorAll('input[name="preference[]"]:checked')).map(cb => cb.parentElement.textContent.trim()),
+            preferenceOther: document.querySelector('input[name="preference_other"]').value,
+            improvement: Array.from(document.querySelectorAll('input[name="improvement[]"]:checked')).map(cb => cb.parentElement.textContent.trim()),
+            improvementOther: document.querySelector('input[name="improvement_other"]').value,
+            challenges: Array.from(document.querySelectorAll('input[name="challenges[]"]:checked')).map(cb => cb.parentElement.textContent.trim()),
+            challengesOther: document.querySelector('input[name="challenges_other"]').value,
+            crMaintenance: getRadioValue('q5r3'),
+            crFixtures: getRadioValue('q6r3'),
+            crPrivacy: getRadioValue('q7r3'),
+            crWaterSupply: getRadioValue('q8r3'),
+            instructorAbility: getRadioValue('q9r'),
+            curriculumFocus: getRadioValue('q10r'),
+            workEthics: getRadioValue('q11r3'),
+            suggestion: document.getElementById('q12c1').value,
+            submittedAt: new Date()
+        };
 
         try {
             await addDoc(collection(db, "responses"), feedbackData);
@@ -311,26 +358,25 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error("Submission Error: ", error);
         }
-    });  // end submitbtn listener
+    });
+});
 
-}); // end DOMContentLoaded
 
+// ================================
+// LOAD RESULTS
+// ================================
 
-// Load results from Firestore and render cards
 async function loadResults() {
     const tableBody = document.getElementById('tableBody');
     if (!tableBody) return;
-
 
     try {
         const querySnapshot = await getDocs(collection(db, "responses"));
         tableBody.innerHTML = "";
 
-
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             const getVal = (val) => (!val ? "No answer" : Array.isArray(val) ? val.join(", ") : val);
-
 
             const responseCard = `
                 <div class="response-profile" style="background: rgba(255,255,255,0.1); border: 1px solid #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; color: white; text-align: left;">
@@ -363,4 +409,3 @@ async function loadResults() {
 
 
 window.showSection = showSection;
-
