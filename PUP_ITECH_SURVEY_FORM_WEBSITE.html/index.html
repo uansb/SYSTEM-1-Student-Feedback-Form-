@@ -97,14 +97,14 @@
             <input type="email" id="email" name="email"><br>
             <label><input type="checkbox" id="anon" name="anonymous">Stay Anonymous</label>
             <label class="yearlevel">Year Level: </label>
-            <select id="yearlevel">
+            <select id="yearlevel" required>
                 <option value="" id="hidden" selected hidden>Select Year Level</option>
                 <option value="yearlevel" id="1st year">1st Year</option>
                 <option value="yearlevel" id="2nd year">2nd Year</option>
                 <option value="yearlevel" id="3rd year">3rd Year</option>
             </select>
             <label class="program">Program: </label>
-            <select>
+            <select id="program" required>
                 <option value="" id="hidden" selected hidden>Select your program</option>
                 <option value="program">Diploma in Information Technology (DIT)</option>
                 <option value="program">Diploma in Office Management (DOMT)</option>
@@ -116,321 +116,167 @@
         </div>
 
 
-        <div id="surveycontent2">
-            <form id="question1">
-                <h3>Experience Rating</h3>
-                <hr>
-                <p>1. Do you experience any issues in your classroom environment (temperature, ventilation, and facilities)?</p>
-                <label><input type="checkbox" id="q1c1" name="issues[]" value="question1checkbox1">Classroom is too hot</label>
-                <label><input type="checkbox" id="q1c2" name="issues[]" value="question1checkbox2">Classroom is too cold</label>
-                <label><input type="checkbox" id="q1c3" name="issues[]" value="question1checkbox3">Air conditioning is not working properly</label>
-                <label><input type="checkbox" id="q1c4" name="issues[]" value="question1checkbox4">Insufficient electric fans</label>
-                <label><input type="checkbox" id="q1c5" name="issues[]" value="question1checkbox5">Poor ventilation / air circulation</label>
-                <label><input type="checkbox" id="q1c6" name="issues[]" value="question1checkbox6">Poor lighting (too dim)</label>
-                <label><input type="checkbox" id="q1c7" name="issues[]" value="question1checkbox7">Lighting is too bright / uncomfortable</label>
-                <label><input type="checkbox" id="q1c8" name="issues[]" value="question1checkbox8">Flickering or broken lights</label>
-                <label><input type="checkbox" id="q1c9" name="issues[]" value="question1checkbox9">Overcrowded classroom</label>
-                <label><input type="checkbox" id="q1c10" name="issues[]" value="question1checkbox10">Not enough chairs or tables</label>
-                <label><input type="checkbox" id="q1c11" name="issues[]" value="question1checkbox11">Uncomfortable seating (chairs/desks)</label>
-                <label><input type="checkbox" id="q1c12" name="issues[]" value="question1checkbox12"> Limited space for movement</label>
-                <label><input type="checkbox" id="q1c13" name="issues[]" value="question1checkbox13">Dirty or poorly maintained classroom</label>
-                <label><input type="checkbox" id="q1c14" name="issues[]" value="question1checkbox14">Unpleasant smell in the classroom</label>
-                <label><input type="checkbox" id="q1c15" name="issues[]" value="question1checkbox15">Classroom is comfortable (no issues)</label>
-                <label><input type="checkbox" id="q1c16" name="issues[]" value="question1checkbox16">Other (please specify): <input type="text" name="issues_other"></label>
-            </form>
+       <form id="surveycontent2">
+    <div id="question1">
+        <h3>Experience Rating</h3>
+        <hr>
+        <p>1. Do you experience any issues in your classroom environment (temperature, ventilation, and facilities)?</p>
+        <label><input type="checkbox" id="q1c1" name="issues[]" value="question1checkbox1" required>Classroom is too hot</label>
+        <label><input type="checkbox" id="q1c2" name="issues[]" value="question1checkbox2">Classroom is too cold</label>
+        <label><input type="checkbox" id="q1c3" name="issues[]" value="question1checkbox3">Air conditioning is not working properly</label>
+        <label><input type="checkbox" id="q1c4" name="issues[]" value="question1checkbox4">Insufficient electric fans</label>
+        <label><input type="checkbox" id="q1c5" name="issues[]" value="question1checkbox5">Poor ventilation / air circulation</label>
+        <label><input type="checkbox" id="q1c6" name="issues[]" value="question1checkbox6">Poor lighting (too dim)</label>
+        <label><input type="checkbox" id="q1c7" name="issues[]" value="question1checkbox7">Lighting is too bright / uncomfortable</label>
+        <label><input type="checkbox" id="q1c8" name="issues[]" value="question1checkbox8">Flickering or broken lights</label>
+        <label><input type="checkbox" id="q1c9" name="issues[]" value="question1checkbox9">Overcrowded classroom</label>
+        <label><input type="checkbox" id="q1c10" name="issues[]" value="question1checkbox10">Not enough chairs or tables</label>
+        <label><input type="checkbox" id="q1c11" name="issues[]" value="question1checkbox11">Uncomfortable seating (chairs/desks)</label>
+        <label><input type="checkbox" id="q1c12" name="issues[]" value="question1checkbox12">Limited space for movement</label>
+        <label><input type="checkbox" id="q1c13" name="issues[]" value="question1checkbox13">Dirty or poorly maintained classroom</label>
+        <label><input type="checkbox" id="q1c14" name="issues[]" value="question1checkbox14">Unpleasant smell in the classroom</label>
+        <label><input type="checkbox" id="q1c15" name="issues[]" value="question1checkbox15">Classroom is comfortable (no issues)</label>
+        <label><input type="checkbox" id="q1c16" name="issues[]" value="question1checkbox16">Other (please specify): <input type="text" name="issues_other"></label>
+    </div>
 
+    <div id="question2">
+        <p>2. What is your favorite hangout spot in ITech? What makes it your favorite?</p>
+        <label><input type="radio" id="q2c1" name="q2r1" value="question2radio1" required>Hallway</label>
+        <label><input type="radio" id="q2c2" name="q2r1" value="question2radio2" required>First-floor facade area</label>
+        <label><input type="radio" id="q2c3" name="q2r1" value="question2radio3" required>Library area</label>
+        <label><input type="radio" id="q2c4" name="q2r1" value="question2radio4" required>Bench areas</label>
+        <label><input type="radio" id="q2c5" name="q2r1" value="question2radio5" required>Other (please specify): <input type="text" name="q2r1_other"></label>
+        <br>
+        <p>Factors for Preference (Check all that apply):</p>
+        <label><input type="checkbox" id="q2c6" name="preference[]" value="question2checkbox1">Good ventilation / windy atmosphere</label>
+        <label><input type="checkbox" id="q2c7" name="preference[]" value="question2checkbox2">Spacious area</label>
+        <label><input type="checkbox" id="q2c8" name="preference[]" value="question2checkbox3">Less crowded</label>
+        <label><input type="checkbox" id="q2c9" name="preference[]" value="question2checkbox4">Quiet environment</label>
+        <label><input type="checkbox" id="q2c10" name="preference[]" value="question2checkbox5">Charging outlets available</label>
+        <label><input type="checkbox" id="q2c11" name="preference[]" value="question2checkbox6">Strong internet or mobile signal</label>
+        <label><input type="checkbox" id="q2c12" name="preference[]" value="question2checkbox7">Shade / protection from heat</label>
+        <label><input type="checkbox" id="q2c13" name="preference[]" value="question2checkbox8">Social freedom / comfortable for group activities</label>
+        <label><input type="checkbox" id="q2c14" name="preference[]" value="question2checkbox9">Other (please specify): <input type="text" name="preference_other"></label>
+    </div>
 
+    <div id="question3">
+        <p>3. In your opinion, what is the most important improvement needed for the computer laboratory?</p>
+        <label><input type="checkbox" id="q3c1" name="improvement[]" value="question3checkbox1">Upgrade or improve computer performance</label>
+        <label><input type="checkbox" id="q3c2" name="improvement[]" value="question3checkbox2">Better and more stable internet connection</label>
+        <label><input type="checkbox" id="q3c3" name="improvement[]" value="question3checkbox3">More chairs and tables</label>
+        <label><input type="checkbox" id="q3c4" name="improvement[]" value="question3checkbox4">Better seating arrangement</label>
+        <label><input type="checkbox" id="q3c5" name="improvement[]" value="question3checkbox5">Increase number of fully working computers</label>
+        <label><input type="checkbox" id="q3c6" name="improvement[]" value="question3checkbox6">Repair or replace defective computers</label>
+        <label><input type="checkbox" id="q3c7" name="improvement[]" value="question3checkbox7">Install updated software and applications</label>
+        <label><input type="checkbox" id="q3c8" name="improvement[]" value="question3checkbox8">Improve availability of required tools/programs</label>
+        <label><input type="checkbox" id="q3c9" name="improvement[]" value="question3checkbox9">Other (please specify): <input type="text" name="improvement_other"></label>
+    </div>
 
+    <div id="question4">
+        <p>4. What are the common challenges you encounter during laboratory or workshop activities?</p>
+        <label><input type="checkbox" id="q4c1" name="challenges[]" value="question4checkbox1">Lack of personal laptop</label>
+        <label><input type="checkbox" id="q4c2" name="challenges[]" value="question4checkbox2">Not allowed or unable to use laboratory computers</label>
+        <label><input type="checkbox" id="q4c3" name="challenges[]" value="question4checkbox3">Limited number of available computers</label>
+        <label><input type="checkbox" id="q4c4" name="challenges[]" value="question4checkbox4">Computers are not functioning properly</label>
+        <label><input type="checkbox" id="q4c5" name="challenges[]" value="question4checkbox5">Computers lack necessary applications/software</label>
+        <label><input type="checkbox" id="q4c6" name="challenges[]" value="question4checkbox6">Insufficient electrical outlets</label>
+        <label><input type="checkbox" id="q4c7" name="challenges[]" value="question4checkbox7">Some electrical outlets are not working</label>
+        <label><input type="checkbox" id="q4c8" name="challenges[]" value="question4checkbox8">Overcrowded laboratory room</label>
+        <label><input type="checkbox" id="q4c9" name="challenges[]" value="question4checkbox9">Poor ventilation</label>
+        <label><input type="checkbox" id="q4c10" name="challenges[]" value="question4checkbox10">Uncomfortable working environment</label>
+        <label><input type="checkbox" id="q4c11" name="challenges[]" value="question4checkbox11">Unstable internet connection</label>
+        <label><input type="checkbox" id="q4c12" name="challenges[]" value="question4checkbox12">Other (please specify): <input type="text" name="challenges_other"></label>
+    </div>
 
-            <form id="question2">
-                <p>2. What is your favorite hangout spot in ITech? What makes it your favorite?</p>
-                <label><input type="radio" id="q2c1" name="q2r1" value="question2radio1">Hallway</label>
-                <label><input type="radio" id="q2c2" name="q2r1" value="question2radio2">First-floor facade area</label>
-                <label><input type="radio" id="q2c3" name="q2r1" value="question2radio3">Library area</label>
-                <label><input type="radio" id="q2c4" name="q2r1" value="question2radio4">Bench areas</label>
-                <label><input type="radio" id="q2c5" name="q2r1" value="question2radio5">Other (please specify): <input type="text" name="q2r1_other"></label>
-                <br>
-                <p>Factors for Preference (Check all that apply):</p>
-                <label><input type="checkbox" id="q2c5" name="preference[]" value="question2checkbox1">Good ventilation / windy atmosphere</label>
-                <label><input type="checkbox" id="q2c6" name="preference[]" value="question2checkbox2">Spacious area</label>
-                <label><input type="checkbox" id="q2c7" name="preference[]" value="question2checkbox3">Less crowded</label>
-                <label><input type="checkbox" id="q2c8" name="preference[]" value="question2checkbox4">Quiet environment</label>
-                <label><input type="checkbox" id="q2c9" name="preference[]" value="question2checkbox5">Charging outlets available</label>
-                <label><input type="checkbox" id="q2c10" name="preference[]" value="question2checkbox6">Strong internet or mobile signal</label>
-                <label><input type="checkbox" id="q2c11" name="preference[]" value="question2checkbox7">Shade / protection from heat</label>
-                <label><input type="checkbox" id="q2c12" name="preference[]" value="question2checkbox8">Social freedom / comfortable for group activities</label>
-                <label><input type="checkbox" id="q2c13" name="preference[]" value="question2checkbox9">Other (please specify): <input type="text" name="preference_other"></label>
-            </form>
-
-
-
-
-            <form id="question3">
-                <p>3. In your opinion, what is the most important improvement needed for the computer laboratory?</p>
-                <label><input type="checkbox" id="q3c1" name="improvement[]" value="question3checkbox1">Upgrade or improve computer performance</label>
-                <label><input type="checkbox" id="q3c2" name="improvement[]" value="question3checkbox2">Better and more stable internet connection</label>
-                <label><input type="checkbox" id="q3c3" name="improvement[]" value="question3checkbox3">More chairs and tables</label>
-                <label><input type="checkbox" id="q3c4" name="improvement[]" value="question3checkbox4">Better seating arrangement</label>
-                <label><input type="checkbox" id="q3c5" name="improvement[]" value="question3checkbox5">Increase number of fully working computers</label>
-                <label><input type="checkbox" id="q3c6" name="improvement[]" value="question3checkbox6">Repair or replace defective computers</label>
-                <label><input type="checkbox" id="q3c7" name="improvement[]" value="question3checkbox7">Install updated software and applications</label>
-                <label><input type="checkbox" id="q3c8" name="improvement[]" value="question3checkbox8">Improve availability of required tools/programs</label>
-                <label><input type="checkbox" id="q3c9" name="improvement[]" value="question3checkbox9">Other (please specify):<input type="text" name="improvement_other"></label>
-            </form>
-
-
-
-
-            <form id="question4">
-                <p>4. What are the common challenges you encounter during laboratory or workshop activities?</p>
-                <label><input type="checkbox" id="q4c1" name="challenges[]" value="question4checkbox1">Lack of personal laptop</label>
-                <label><input type="checkbox" id="q4c2" name="challenges[]" value="question4checkbox2">Not allowed or unable to use laboratory computers</label>
-                <label><input type="checkbox" id="q4c3" name="challenges[]" value="question4checkbox3">Limited number of available computers</label>
-                <label><input type="checkbox" id="q4c4" name="challenges[]" value="question4checkbox4">Computers are not functioning properly</label>
-                <label><input type="checkbox" id="q4c5" name="challenges[]" value="question4checkbox5">Computers lack necessary applications/software</label>
-                <label><input type="checkbox" id="q4c6" name="challenges[]" value="question4checkbox6">Insufficient electrical outlets</label>
-                <label><input type="checkbox" id="q4c7" name="challenges[]" value="question4checkbox7">Some electrical outlets are not working</label>
-                <label><input type="checkbox" id="q4c8" name="challenges[]" value="question4checkbox8">Overcrowded laboratory room</label>
-                <label><input type="checkbox" id="q4c9" name="challenges[]" value="question4checkbox9">Poor ventilation</label>
-                <label><input type="checkbox" id="q4c10" name="challenges[]" value="question4checkbox10">Uncomfortable working environment</label>
-                <label><input type="checkbox" id="q4c11" name="challenges[]" value="question4checkbox11">Unstable internet connection</label>
-                <label><input type="checkbox" id="q4c12" name="challenges[]" value="question4checkbox12">Other (please specify): <input type="text" name="challenges_other"></label>
-            </form>
-
-
-
-
-            <form id="question5" class="likert-question">
-                <p>5. The comfort rooms are consistently clean and well-maintained by the staff.</p>
-                <div class="likert-scale">
-                    <label>
-                        <input type="radio" id="q5c1" name="q5r3" value="Strongly Disagree">
-                        <span class="circle red"></span>
-                        Strongly Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q5c2" name="q5r3" value="Disagree">
-                        <span class="circle orange"></span>
-                        Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q5c3" name="q5r3" value="Neutral">
-                        <span class="circle yellow"></span>
-                        Neutral
-                    </label>
-                    <label>
-                        <input type="radio" id="q5c4" name="q5r3" value="Agree">
-                        <span class="circle lightgreen"></span>
-                        Agree
-                    </label>
-                    <label>
-                        <input type="radio" id="q5c5" name="q5r3" value="Strongly Agree">
-                        <span class="circle green"></span>
-                        Strongly Agree
-                    </label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question6" class="likert-question">
-                <p>6. All CR fixtures (toilet handles, drains, faucets) are in good working condition.</p>
-                <div class="likert-scale">
-                    <label>
-                        <input type="radio" id="q6c1" name="q6r3" value="Strongly Disagree">
-                        <span class="circle red"></span>
-                        Strongly Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q6c2" name="q6r3" value="Disagree">
-                        <span class="circle orange"></span>
-                        Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q6c3" name="q6r3" value="Neutral">
-                        <span class="circle yellow"></span>
-                        Neutral
-                    </label>
-                    <label>
-                        <input type="radio" id="q6c4" name="q6r3" value="Agree">
-                        <span class="circle lightgreen"></span>
-                        Agree
-                    </label>
-                    <label>
-                        <input type="radio" id="q6c5" name="q6r3" value="Strongly Agree">
-                        <span class="circle green"></span>
-                        Strongly Agree
-                    </label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question7" class="likert-question">
-                <p>7. The layout of the comfort rooms provides sufficient privacy and space for students.</p>
-                <div class="likert-scale">
-                    <label>
-                        <input type="radio" id="q7c1" name="q7r3" value="Strongly Disagree">
-                        <span class="circle red"></span>
-                        Strongly Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q7c2" name="q7r3" value="Disagree">
-                        <span class="circle orange"></span>
-                        Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q7c3" name="q7r3" value="Neutral">
-                        <span class="circle yellow"></span>
-                        Neutral
-                    </label>
-                    <label>
-                        <input type="radio" id="q7c4" name="q7r3" value="Agree">
-                        <span class="circle lightgreen"></span>
-                        Agree
-                    </label>
-                    <label>
-                        <input type="radio" id="q7c5" name="q7r3" value="Strongly Agree">
-                        <span class="circle green"></span>
-                        Strongly Agree
-                    </label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question8" class="likert-question">
-                <p>8. There is always a sufficient supply of water and plastic dippers (tabo) available inside the comfort rooms.</p>
-                <div class="likert-scale">
-                    <label>
-                        <input type="radio" id="q8c1" name="q8r3" value="Strongly Disagree">
-                        <span class="circle red"></span>
-                        Strongly Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q8c2" name="q8r3" value="Disagree">
-                        <span class="circle orange"></span>
-                        Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q8c3" name="q8r3" value="Neutral">
-                        <span class="circle yellow"></span>
-                        Neutral
-                    </label>
-                    <label>
-                        <input type="radio" id="q8c4" name="q8r3" value="Agree">
-                        <span class="circle lightgreen"></span>
-                        Agree
-                    </label>
-                    <label>
-                        <input type="radio" id="q8c5" name="q8r3" value="Strongly Agree">
-                        <span class="circle green"></span>
-                        Strongly Agree
-                    </label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question9" class="star-question">
-                <p>9. In general, how would you rate the instructors' ability to explain complex topics in simple, easy-to-understand terms?</p>
-                <div class="star-rating">
-                    <input type="radio" id="q9s1" name="q9r" value="1">
-                    <label for="q9s1" title="Very Excellent">★</label>
-                    <input type="radio" id="q9s2" name="q9r" value="2">
-                    <label for="q9s2" title="Excellent">★</label>
-                    <input type="radio" id="q9s3" name="q9r" value="3">
-                    <label for="q9s3" title="Neutral">★</label>
-                    <input type="radio" id="q9s4" name="q9r" value="4">
-                    <label for="q9s4" title="Poor">★</label>
-                    <input type="radio" id="q9s5" name="q9r" value="5">
-                    <label for="q9s5" title="Very Poor">★</label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question10" class="frequency-question">
-                <p>10. On average, to what extent do instructors across the department stay focused on curriculum-related subject matter rather than unrelated topics?</p>
-                <div class="frequency-scale">
-                    <label>
-                        <input type="radio" name="q10r" value="Never">
-                        <span class="circle red"></span>
-                        Never
-                    </label>
-                    <label>
-                        <input type="radio" name="q10r" value="Rarely">
-                        <span class="circle orange"></span>
-                        Rarely
-                    </label>
-                    <label>
-                        <input type="radio" name="q10r" value="Sometimes">
-                        <span class="circle yellow"></span>
-                        Sometimes
-                    </label>
-                    <label>
-                        <input type="radio" name="q10r" value="Often">
-                        <span class="circle lightgreen"></span>
-                        Often
-                    </label>
-                    <label>
-                        <input type="radio" name="q10r" value="Always">
-                        <span class="circle green"></span>
-                        Always
-                    </label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question11" class="likert-question">
-                <p>11. To what extent do you agree that the faculty demonstrates strong work ethics and consideration for students' diverse situations?</p>
-                <div class="likert-scale">
-                    <label>
-                        <input type="radio" id="q11c1" name="q11r3" value="Strongly Disagree">
-                        <span class="circle red"></span>
-                        Strongly Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q11c2" name="q11r3" value="Disagree">
-                        <span class="circle orange"></span>
-                        Disagree
-                    </label>
-                    <label>
-                        <input type="radio" id="q11c3" name="q11r3" value="Neutral">
-                        <span class="circle yellow"></span>
-                        Neutral
-                    </label>
-                    <label>
-                        <input type="radio" id="q11c4" name="q11r3" value="Agree">
-                        <span class="circle lightgreen"></span>
-                        Agree
-                    </label>
-                    <label>
-                        <input type="radio" id="q11c5" name="q11r3" value="Strongly Agree">
-                        <span class="circle green"></span>
-                        Strongly Agree
-                    </label>
-                </div>
-            </form>
-
-
-
-
-            <form id="question12">
-                <p>12. What specific changes would you suggest the department implement to make teaching methods more student-centered and less stressful?</p>
-                <textarea id="q12c1" name="q12c1" placeholder="Type here..." rows="4"></textarea>
-            </form>
-
-            <!-- CHANGED: type="submit" → type="button" to prevent native browser submission bypassing JS validation -->
-            <button id="submitbtn" class="surveybtn" type="button">Submit</button>
+    <div id="question5" class="likert-question">
+        <p>5. The comfort rooms are consistently clean and well-maintained by the staff.</p>
+        <div class="likert-scale">
+            <label><input type="radio" id="q5c1" name="q5r3" value="Strongly Disagree" required><span class="circle red"></span>Strongly Disagree</label>
+            <label><input type="radio" id="q5c2" name="q5r3" value="Disagree" required><span class="circle orange"></span>Disagree</label>
+            <label><input type="radio" id="q5c3" name="q5r3" value="Neutral" required><span class="circle yellow"></span>Neutral</label>
+            <label><input type="radio" id="q5c4" name="q5r3" value="Agree" required><span class="circle lightgreen"></span>Agree</label>
+            <label><input type="radio" id="q5c5" name="q5r3" value="Strongly Agree" required><span class="circle green"></span>Strongly Agree</label>
         </div>
+    </div>
+
+    <div id="question6" class="likert-question">
+        <p>6. All CR fixtures (toilet handles, drains, faucets) are in good working condition.</p>
+        <div class="likert-scale">
+            <label><input type="radio" id="q6c1" name="q6r3" value="Strongly Disagree" required><span class="circle red"></span>Strongly Disagree</label>
+            <label><input type="radio" id="q6c2" name="q6r3" value="Disagree" required><span class="circle orange"></span>Disagree</label>
+            <label><input type="radio" id="q6c3" name="q6r3" value="Neutral" required><span class="circle yellow"></span>Neutral</label>
+            <label><input type="radio" id="q6c4" name="q6r3" value="Agree" required><span class="circle lightgreen"></span>Agree</label>
+            <label><input type="radio" id="q6c5" name="q6r3" value="Strongly Agree" required><span class="circle green"></span>Strongly Agree</label>
+        </div>
+    </div>
+
+    <div id="question7" class="likert-question">
+        <p>7. The layout of the comfort rooms provides sufficient privacy and space for students.</p>
+        <div class="likert-scale">
+            <label><input type="radio" id="q7c1" name="q7r3" value="Strongly Disagree" required><span class="circle red"></span>Strongly Disagree</label>
+            <label><input type="radio" id="q7c2" name="q7r3" value="Disagree" required><span class="circle orange"></span>Disagree</label>
+            <label><input type="radio" id="q7c3" name="q7r3" value="Neutral" required><span class="circle yellow"></span>Neutral</label>
+            <label><input type="radio" id="q7c4" name="q7r3" value="Agree" required><span class="circle lightgreen"></span>Agree</label>
+            <label><input type="radio" id="q7c5" name="q7r3" value="Strongly Agree" required><span class="circle green"></span>Strongly Agree</label>
+        </div>
+    </div>
+
+    <div id="question8" class="likert-question">
+        <p>8. There is always a sufficient supply of water and plastic dippers (tabo) available inside the comfort rooms.</p>
+        <div class="likert-scale">
+            <label><input type="radio" id="q8c1" name="q8r3" value="Strongly Disagree" required><span class="circle red"></span>Strongly Disagree</label>
+            <label><input type="radio" id="q8c2" name="q8r3" value="Disagree" required><span class="circle orange"></span>Disagree</label>
+            <label><input type="radio" id="q8c3" name="q8r3" value="Neutral" required><span class="circle yellow"></span>Neutral</label>
+            <label><input type="radio" id="q8c4" name="q8r3" value="Agree" required><span class="circle lightgreen"></span>Agree</label>
+            <label><input type="radio" id="q8c5" name="q8r3" value="Strongly Agree" required><span class="circle green"></span>Strongly Agree</label>
+        </div>
+    </div>
+
+    <div id="question9" class="star-question">
+        <p>9. In general, how would you rate the instructors' ability to explain complex topics in simple, easy-to-understand terms?</p>
+        <div class="star-rating">
+            <input type="radio" id="q9s1" name="q9r" value="1" required>
+            <label for="q9s1" title="Very Excellent">★</label>
+            <input type="radio" id="q9s2" name="q9r" value="2" required>
+            <label for="q9s2" title="Excellent">★</label>
+            <input type="radio" id="q9s3" name="q9r" value="3" required>
+            <label for="q9s3" title="Neutral">★</label>
+            <input type="radio" id="q9s4" name="q9r" value="4" required>
+            <label for="q9s4" title="Poor">★</label>
+            <input type="radio" id="q9s5" name="q9r" value="5" required>
+            <label for="q9s5" title="Very Poor">★</label>
+        </div>
+    </div>
+
+    <div id="question10" class="frequency-question">
+        <p>10. On average, to what extent do instructors across the department stay focused on curriculum-related subject matter rather than unrelated topics?</p>
+        <div class="frequency-scale">
+            <label><input type="radio" name="q10r" value="Never" required><span class="circle red"></span>Never</label>
+            <label><input type="radio" name="q10r" value="Rarely" required><span class="circle orange"></span>Rarely</label>
+            <label><input type="radio" name="q10r" value="Sometimes" required><span class="circle yellow"></span>Sometimes</label>
+            <label><input type="radio" name="q10r" value="Often" required><span class="circle lightgreen"></span>Often</label>
+            <label><input type="radio" name="q10r" value="Always" required><span class="circle green"></span>Always</label>
+        </div>
+    </div>
+
+    <div id="question11" class="likert-question">
+        <p>11. To what extent do you agree that the faculty demonstrates strong work ethics and consideration for students' diverse situations?</p>
+        <div class="likert-scale">
+            <label><input type="radio" id="q11c1" name="q11r3" value="Strongly Disagree" required><span class="circle red"></span>Strongly Disagree</label>
+            <label><input type="radio" id="q11c2" name="q11r3" value="Disagree" required><span class="circle orange"></span>Disagree</label>
+            <label><input type="radio" id="q11c3" name="q11r3" value="Neutral" required><span class="circle yellow"></span>Neutral</label>
+            <label><input type="radio" id="q11c4" name="q11r3" value="Agree" required><span class="circle lightgreen"></span>Agree</label>
+            <label><input type="radio" id="q11c5" name="q11r3" value="Strongly Agree" required><span class="circle green"></span>Strongly Agree</label>
+        </div>
+    </div>
+
+    <div id="question12">
+        <p>12. What specific changes would you suggest the department implement to make teaching methods more student-centered and less stressful?</p>
+        <textarea id="q12c1" name="q12c1" placeholder="Type here..." rows="4" required></textarea>
+    </div>
+
+    <button id="submitbtn" class="surveybtn" type="button">Submit</button>
+</form>
     </section>
 
     <!-- ABOUT SECTION -->
@@ -491,5 +337,4 @@
 
 
 </html>
-
 
