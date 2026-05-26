@@ -92,9 +92,13 @@
             <h3>Personal Information</h3>
             <hr>
             <label>Name: </label>
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" aria-describedby="name-error" placeholder="Ex. John Felix Sungahid"><br>
+            <span id="name-error" class="field-error" aria-live="polite"></span>
+
             <label>Email Address: </label>
-            <input type="email" id="email" name="email"><br>
+            <input type="email" id="email" name="email" aria-describedby="email-error" placeholder="Ex. john.felix@pup.edu.ph"><br>
+            <span id="email-error" class="field-error" aria-live="polite"></span>
+
             <label><input type="checkbox" id="anon" name="anonymous">Stay Anonymous</label>
             <label class="yearlevel">Year Level: </label>
             <select id="yearlevel" required>

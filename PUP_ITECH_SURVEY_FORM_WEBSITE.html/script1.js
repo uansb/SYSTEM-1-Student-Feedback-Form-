@@ -50,33 +50,87 @@ function clearError(inputEl) {
 
 function attachLiveValidation() {
     const nameInput = document.getElementById('name');
-    if (nameInput) {
-        nameInput.addEventListener('input', () => {
-            const anon = document.getElementById('anon').checked;
-            if (anon) { clearError(nameInput); return; }
-            if (nameInput.value === '') { clearError(nameInput); return; }
-            if (/\d/.test(nameInput.value)) {
-                showError(nameInput, 'Name must not contain numbers.');
-            } else {
-                clearError(nameInput);
-            }
-        });
-    }
-
     const emailInput = document.getElementById('email');
-    if (emailInput) {
-        emailInput.addEventListener('blur', () => {
-            const anon = document.getElementById('anon').checked;
-            if (anon) { clearError(emailInput); return; }
-            if (emailInput.value === '') { clearError(emailInput); return; }
-            if (!isValidEmail(emailInput.value)) {
-                showError(emailInput, 'Please enter a valid email address (e.g. name@email.com).');
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+
+    if (nameInput && emailInput && nameError && emailError) {
+        const sanitizeName = (value) => value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s.]/g, '');
+        const sanitizeEmail = (value) => value.replace(/\s+/g, '');
+        const isValidName = (value) => /^[A-Za-zÀ-ÖØ-öø-ÿ\s.]+$/.test(value);
+        const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+        // Real-time strict name validation
+        nameInput.addEventListener('input', () => {
+            const cleaned = sanitizeName(nameInput.value);
+            const hasInvalidChars = nameInput.value !== cleaned;
+
+            if (hasInvalidChars) {
+                nameInput.value = cleaned;
+                nameError.textContent = '❌ Numbers, symbols, and special characters are not allowed. Only letters, spaces, and periods (for middle initials).';
+                nameInput.classList.add('input-invalid');
+                nameInput.setAttribute('aria-invalid', 'true');
+                nameInput.setAttribute('aria-describedby', 'name-error');
+
+                setTimeout(() => {
+                    if (isValidName(nameInput.value)) {
+                        nameError.textContent = '';
+                        nameInput.classList.remove('input-invalid');
+                        nameInput.setAttribute('aria-invalid', 'false');
+                    }
+                }, 3000);
+            } else if (nameInput.value.trim() === '') {
+                nameError.textContent = '';
+                nameInput.classList.remove('input-invalid');
+                nameInput.setAttribute('aria-invalid', 'false');
             } else {
-                clearError(emailInput);
+                nameError.textContent = '';
+                nameInput.classList.remove('input-invalid');
+                nameInput.setAttribute('aria-invalid', 'false');
             }
         });
+
+        // Real-time strict email validation
         emailInput.addEventListener('input', () => {
-            if (isValidEmail(emailInput.value)) clearError(emailInput);
+            const cleaned = sanitizeEmail(emailInput.value);
+
+            if (emailInput.value !== cleaned) {
+                emailInput.value = cleaned;
+                emailError.textContent = '❌ Spaces are not allowed in email addresses.';
+                emailInput.classList.add('input-invalid');
+                emailInput.setAttribute('aria-invalid', 'true');
+                emailInput.setAttribute('aria-describedby', 'email-error');
+            } else if (emailInput.value.trim() !== '' && !isValidEmail(emailInput.value)) {
+                emailError.textContent = '⚠️ Please enter a valid email format (example@domain.com)';
+                emailInput.classList.add('input-invalid');
+                emailInput.setAttribute('aria-invalid', 'true');
+                emailInput.setAttribute('aria-describedby', 'email-error');
+            } else if (emailInput.value.trim() === '') {
+                emailError.textContent = '';
+                emailInput.classList.remove('input-invalid');
+                emailInput.setAttribute('aria-invalid', 'false');
+            } else {
+                emailError.textContent = '';
+                emailInput.classList.remove('input-invalid');
+                emailInput.setAttribute('aria-invalid', 'false');
+            }
+        });
+
+        // Validate on blur as well
+        nameInput.addEventListener('blur', () => {
+            if (nameInput.value.trim() !== '' && !isValidName(nameInput.value)) {
+                nameError.textContent = '❌ Please enter only letters, spaces, and periods for your name.';
+                nameInput.classList.add('input-invalid');
+                nameInput.setAttribute('aria-invalid', 'true');
+            }
+        });
+
+        emailInput.addEventListener('blur', () => {
+            if (emailInput.value.trim() !== '' && !isValidEmail(emailInput.value)) {
+                emailError.textContent = '❌ Please enter a valid email address.';
+                emailInput.classList.add('input-invalid');
+                emailInput.setAttribute('aria-invalid', 'true');
+            }
         });
     }
 

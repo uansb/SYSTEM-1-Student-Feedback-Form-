@@ -418,6 +418,19 @@ option {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.input-invalid {
+    border-color: #e74c3c !important;
+}
+
+.field-error {
+    display: block;
+    min-height: 1.2em;
+    margin: 4px 0 10px;
+    color: #e74c3c;
+    font-size: 0.85rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
 
 
 
